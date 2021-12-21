@@ -4,7 +4,8 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
-use App\Models\Category; 
+use App\Models\Category;
+use App\Models\Brand;
 
 
 /*
@@ -19,22 +20,21 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
-
-    $list = Product::get();
-    dd($list);
-    //$product = Product::find(3);
-    //    $date = [
-    //        'name' => 'Iphone 12'
-    //    ];
-    //    $product = Product::create($date);
-    //$product = new Product();
-    //$product->name = "Samsung x20";
-    //$product->save();
-    //dd($product);
-    //dd(Product::all());
-
     return view('main');
 });
+
+
+Route::get('admin', function () {
+    return view('admin.index');
+});
+
+
+Route::resources([
+    'brand' => \App\Http\Controllers\Admin\BrandController::class,
+    'category' => \App\Http\Controllers\Admin\CategoryController::class,
+    'product' => \App\Http\Controllers\Admin\ProductController::class
+]);
+
 
 Route::get('product/store', function () {
     return view('store');
