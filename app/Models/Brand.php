@@ -9,7 +9,6 @@ class Brand extends Model
 {
     protected $fillable = ['name', 'description', 'status', 'creation_year', 'logo'];
     //protected $guarded = ['id'];
-    public $timestamps = false;
 
     use HasFactory;
 }

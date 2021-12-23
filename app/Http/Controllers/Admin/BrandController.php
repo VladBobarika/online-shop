@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
 
 
 class BrandController extends Controller
@@ -12,14 +11,11 @@ class BrandController extends Controller
 /**
 * Display a listing of the resource.
 *
+* @return \Illuminate\Http\Response
 */
     public function index()
     {
-        $brands = Brand::paginate();
-
-        return view('admin.brand.index', [
-            'brands' => $brands
-        ]);
+        return view('admin.brand.index');
     }
 
 /**
@@ -29,7 +25,7 @@ class BrandController extends Controller
 */
     public function create()
     {
-        return view('admin.brand.create');
+        //
     }
 
 /**
@@ -40,13 +36,7 @@ class BrandController extends Controller
 */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $brand = Brand::create($data);
-        dd($brand);
-
-        //$brand = Brand::create($request->all());
-
-        //return  redirect(route('admin.brand.index'));
+        //
     }
 
 /**
@@ -55,9 +45,9 @@ class BrandController extends Controller
 * @param  int  $id
 * @return \Illuminate\Http\Response
 */
-    public function show(Brand $brand)
+    public function show($id)
     {
-        dd($brand);
+        //
     }
 
 /**
@@ -66,9 +56,9 @@ class BrandController extends Controller
 * @param  int  $id
 * @return \Illuminate\Http\Response
 */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        return view('admin.brand.edit', compact('brand'));
+        //
     }
 
 /**
@@ -78,11 +68,9 @@ class BrandController extends Controller
 * @param  int  $id
 * @return \Illuminate\Http\Response
 */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        $brand->fill($request->all());
-        $brand->save();
-        return redirect(route('admin.brand.index'));
+        //
     }
 
     /**
@@ -91,9 +79,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        $brand->delete();
-        return redirect(route('admin.brand.index'));
+        //
     }
 }
