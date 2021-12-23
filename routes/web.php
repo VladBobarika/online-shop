@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 /*
@@ -23,17 +25,17 @@ Route::get('/', function () {
     return view('main');
 });
 
-
-Route::get('admin', function () {
+Route::get('admin', function (){
     return view('admin.index');
 });
 
-
-Route::resources([
-    'brand' => \App\Http\Controllers\Admin\BrandController::class,
-    'category' => \App\Http\Controllers\Admin\CategoryController::class,
-    'product' => \App\Http\Controllers\Admin\ProductController::class
-]);
+Route::prefix('admin')->name('admin.')->group(function (){
+    Route::resources([
+        'brand'=> \App\Http\Controllers\Admin\BrandController::class,
+        'category'=> \App\Http\Controllers\Admin\CategoryController::class,
+        'product'=> \App\Http\Controllers\Admin\ProductController::class
+    ]);
+});
 
 
 Route::get('product/store', function () {
